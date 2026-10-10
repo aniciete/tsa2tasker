@@ -87,6 +87,11 @@ final class AuthWorkflowTest extends CIUnitTestCase
         $result->assertRedirectTo(site_url('/'));
         $this->assertSame(1, session()->get('user_id'));
         $this->assertSame('charles', session()->get('username'));
+
+        // Confirm protected action works normally when logged in
+        $protected = $this->withSession($_SESSION)->get('tasks/new');
+        $protected->assertOK();
+        $protected->assertSee('Create New Task');
     }
 
     public function testSeededPasswordsAreStoredAsVerifiableHashes(): void

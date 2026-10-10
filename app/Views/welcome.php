@@ -53,9 +53,12 @@
 
         <div class="section-header">
             <h1>Here are your tasks for today.</h1>
-            <?php if ($isLoggedIn): ?>
-                <a href="<?= site_url('tasks/new') ?>" class="btn btn-primary">+ Create New Task</a>
-            <?php endif; ?>
+            <div>
+                <?php if ($isLoggedIn): ?>
+                    <a href="<?= site_url('tasks/new') ?>" class="btn btn-primary">+ Create New Task</a>
+                <?php endif; ?>
+                <a href="<?= site_url('tasks') ?>" class="btn btn-secondary">View All Tasks &rarr;</a>
+            </div>
         </div>
 
         <?php if (! empty($tasks)): ?>
@@ -73,11 +76,6 @@
                         <?php if ($isLoggedIn): ?>
                             <div class="task-card-actions">
                                 <a href="<?= site_url('tasks/' . $task['id'] . '/edit') ?>" class="btn btn-sm btn-edit">Edit</a>
-                                <form action="<?= site_url('tasks/' . $task['id'] . '/delete') ?>" method="post"
-                                    onsubmit="return confirm('Are you sure you want to archive this task?');" style="display:inline;">
-                                    <?= csrf_field() ?>
-                                    <button type="submit" class="btn btn-sm btn-delete">Delete</button>
-                                </form>
                             </div>
                         <?php endif; ?>
                     </div>

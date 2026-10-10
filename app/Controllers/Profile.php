@@ -16,29 +16,28 @@ class Profile extends BaseController
     }
 
     /**
-     * Display profile page for the logged-in user or demo fallback.
+     * Display profile page for the authenticated user or guest visitor.
      */
     public function index(): string
     {
         $userId = session()->get('user_id');
-        $user   = null;
 
         if ($userId !== null) {
             $user = $this->userModel->find($userId);
+            if ($user) {
+                $user['isLoggedIn'] = true;
+
+                return view('profile', $user);
+            }
         }
 
-        if (! $user) {
-            $user = $this->userModel->first() ?? [
-                'id'         => '',
-                'username'   => 'Guest',
-                'full_name'  => '',
-                'email'      => '',
-                'created_at' => '',
-            ];
-        }
-
-        $user['isLoggedIn'] = $userId !== null;
-
-        return view('profile', $user);
+        return view('profile', [
+            'id'         => '—',
+            'username'   => 'Guest',
+            'full_name'  => 'Guest Visitor',
+            'email'      => 'guest@example.com',
+            'created_at' => '—',
+            'isLoggedIn' => false,
+        ]);
     }
 }

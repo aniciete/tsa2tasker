@@ -14,7 +14,6 @@ $routes->get('tasks', 'Tasks::index');
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::attempt');
 $routes->post('logout', 'Auth::logout');
-$routes->get('logout', 'Auth::logout');
 
 // Protected Task Management Routes (restricted by AuthFilter)
 $routes->group('tasks', ['filter' => 'auth'], static function ($routes) {

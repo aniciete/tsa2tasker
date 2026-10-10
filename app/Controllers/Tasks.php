@@ -12,6 +12,26 @@ class Tasks extends BaseController
 {
     protected TaskModel $taskModel;
 
+    /**
+     * Reusable validation rules for creating and updating tasks.
+     *
+     * @var array<string, array<string, string>>
+     */
+    protected array $taskValidationRules = [
+        'title' => [
+            'label' => 'Task Title',
+            'rules' => 'required|min_length[2]|max_length[150]',
+        ],
+        'task_date' => [
+            'label' => 'Task Date',
+            'rules' => 'required|valid_date',
+        ],
+        'status' => [
+            'label' => 'Status',
+            'rules' => 'permit_empty|in_list[pending,completed]',
+        ],
+    ];
+
     public function __construct()
     {
         $this->taskModel = new TaskModel();
@@ -46,22 +66,7 @@ class Tasks extends BaseController
      */
     public function create(): RedirectResponse
     {
-        $rules = [
-            'title' => [
-                'label' => 'Task Title',
-                'rules' => 'required|min_length[3]|max_length[150]',
-            ],
-            'task_date' => [
-                'label' => 'Task Date',
-                'rules' => 'required|valid_date',
-            ],
-            'status' => [
-                'label' => 'Status',
-                'rules' => 'permit_empty|in_list[pending,completed]',
-            ],
-        ];
-
-        if (! $this->validate($rules)) {
+        if (! $this->validate($this->taskValidationRules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
@@ -105,22 +110,7 @@ class Tasks extends BaseController
             throw PageNotFoundException::forPageNotFound('Task not found.');
         }
 
-        $rules = [
-            'title' => [
-                'label' => 'Task Title',
-                'rules' => 'required|min_length[3]|max_length[150]',
-            ],
-            'task_date' => [
-                'label' => 'Task Date',
-                'rules' => 'required|valid_date',
-            ],
-            'status' => [
-                'label' => 'Status',
-                'rules' => 'permit_empty|in_list[pending,completed]',
-            ],
-        ];
-
-        if (! $this->validate($rules)) {
+        if (! $this->validate($this->taskValidationRules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
