@@ -8,6 +8,9 @@
 
 **Tasker** is a secure, full-stack personal task management web application built with **CodeIgniter 4** and **MySQL**. Developed for **IT0049 (Web System Technologies) — Technical Summative Assessment 2 (TSA2)**, this system extends the TSA1 foundation to production-grade standards with **full CRUD workflows**, **session authentication**, **strict form validation**, **controller access filters**, and **soft deletion (archiving)**.
 
+> **Live Hosted Application**: [http://tsa2.freedev.app/](http://tsa2.freedev.app/)  
+> **Demo Staff Credentials**: Username: `charles` &bull; Password: `TaskerDemo!2026`
+
 ---
 
 ## 1. Assessment & Grading Rubrics Mapping
