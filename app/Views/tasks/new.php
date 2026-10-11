@@ -6,7 +6,7 @@
     <title><?= esc($title ?? 'Create New Task | Tasks for Today') ?></title>
     <meta name="description" content="Add a new task">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= base_url('style.css') ?>">
+    <link rel="stylesheet" href="<?= preg_replace('~^https?:~', '', base_url('style.css')) ?>">
 </head>
 
 <body>

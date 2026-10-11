@@ -6,7 +6,7 @@
     <title>Welcome to Tasker!</title>
     <meta name="description" content="Your personal task management assistant">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= base_url('style.css') ?>">
+    <link rel="stylesheet" href="<?= preg_replace('~^https?:~', '', base_url('style.css')) ?>">
 </head>
 
 <body>

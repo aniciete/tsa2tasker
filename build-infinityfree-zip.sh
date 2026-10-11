@@ -22,10 +22,13 @@ rsync -av \
 # Copy essential server configuration files
 cp "$DIR/.htaccess" "$TMP_DIR/.htaccess"
 [ -f "$DIR/public/.htaccess" ] && cp "$DIR/public/.htaccess" "$TMP_DIR/public/.htaccess"
+[ -f "$DIR/public/style.css" ] && cp "$DIR/public/style.css" "$TMP_DIR/style.css"
+[ -f "$DIR/public/favicon.ico" ] && cp "$DIR/public/favicon.ico" "$TMP_DIR/favicon.ico"
 
 # Use production InfinityFree environment file if present, else fallback
 if [ -f "$DIR/env.infinityfree" ]; then
     cp "$DIR/env.infinityfree" "$TMP_DIR/.env"
+    sed -i '' 's/YOUR_VPANEL_PASSWORD/wvzXw3gDNArWw/g' "$TMP_DIR/.env"
 elif [ -f "$DIR/env.example" ]; then
     cp "$DIR/env.example" "$TMP_DIR/.env"
 elif [ -f "$DIR/.env" ]; then
