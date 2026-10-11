@@ -135,3 +135,6 @@ IT0049 - TSA1 - Tasks for Today Management System (CodeIgniter).docx
 
 # Archives
 *.zip
+
+# Local SQLite databases
+writable/*.sqlite*

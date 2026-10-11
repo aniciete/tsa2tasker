@@ -16,7 +16,7 @@
             <ul>
                 <li class="menu-item"><a href="<?= site_url('/') ?>">Welcome</a></li>
                 <li class="menu-item"><a href="<?= site_url('about') ?>">About</a></li>
-                <li class="menu-item"><a href="<?= site_url('profile') ?>">Profile</a></li>
+                <li class="menu-item"><a href="<?= site_url('profile') ?>" class="active">Profile</a></li>
                 <li class="menu-item"><a href="<?= site_url('tasks') ?>">Tasks</a></li>
                 <?php if (! empty($isLoggedIn)): ?>
                     <li class="menu-item"><a href="<?= site_url('tasks/new') ?>">+ New Task</a></li>
@@ -34,19 +34,48 @@
 
         <div class="heroe">
             <h1>Profile</h1>
-            <h2>Hi, <?= esc($username) ?>!</h2>
-            <h3>ID: <?= esc($id) ?></h3>
-            <h3>Full name: <?= esc($full_name) ?></h3>
-            <h3>Email: <?= esc($email) ?></h3>
-            <h3>Created at: <?= esc($created_at) ?></h3>
+            <h2><?= ! empty($isLoggedIn) ? 'Hi, ' . esc($full_name) . '!' : 'User Account Overview' ?></h2>
         </div>
     </header>
 
     <section>
-        <?php if (! empty($isLoggedIn)): ?>
-            <p>You are currently logged in as <strong><?= esc($username) ?></strong>.</p>
-        <?php else: ?>
-            <p>Demo user profile (Guest view). <a href="<?= site_url('login') ?>">Log in</a> to manage tasks.</p>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <?= esc(strtoupper(substr($username, 0, 1))) ?>
+            </div>
+            <div class="profile-details">
+                <h2><?= esc($full_name) ?></h2>
+                <p class="profile-handle">@<?= esc($username) ?></p>
+
+                <div class="profile-info-grid">
+                    <div class="info-item">
+                        <span class="info-label">User ID:</span>
+                        <span class="info-value"><?= esc($id) ?></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value"><?= esc($email) ?></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Member Since:</span>
+                        <span class="info-value"><?= esc($created_at) ?></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Account Role:</span>
+                        <span class="info-value">
+                            <span class="badge badge-<?= ! empty($isLoggedIn) ? 'completed' : 'pending' ?>">
+                                <?= ! empty($isLoggedIn) ? 'Authenticated Staff' : 'Guest Visitor' ?>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php if (empty($isLoggedIn)): ?>
+            <p class="auth-notice" style="margin-top: 1.5rem;">
+                Looking to manage tasks? <a href="<?= site_url('login') ?>">Log in</a> with your staff credentials.
+            </p>
         <?php endif; ?>
     </section>
 

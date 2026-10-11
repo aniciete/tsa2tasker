@@ -18,7 +18,7 @@
                 <li class="menu-item"><a href="<?= site_url('about') ?>">About</a></li>
                 <li class="menu-item"><a href="<?= site_url('profile') ?>">Profile</a></li>
                 <li class="menu-item"><a href="<?= site_url('tasks') ?>">Tasks</a></li>
-                <li class="menu-item"><a href="<?= site_url('tasks/new') ?>">+ New Task</a></li>
+                <li class="menu-item"><a href="<?= site_url('tasks/new') ?>" class="active">+ New Task</a></li>
                 <li class="menu-item">
                     <form action="<?= site_url('logout') ?>" method="post" style="display:inline;">
                         <?= csrf_field() ?>
@@ -35,23 +35,23 @@
     </header>
 
     <section>
-        <?php if (! empty($errors)): ?>
-            <div class="alert alert-danger">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= esc($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('error')): ?>
-            <div class="alert alert-danger">
-                <?= esc(session()->getFlashdata('error')) ?>
-            </div>
-        <?php endif; ?>
-
         <div class="form-container">
+            <?php if (! empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= esc($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger">
+                    <?= esc(session()->getFlashdata('error')) ?>
+                </div>
+            <?php endif; ?>
+
             <form action="<?= site_url('tasks') ?>" method="post">
                 <?= csrf_field() ?>
 

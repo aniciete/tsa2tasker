@@ -18,7 +18,7 @@
                 <li class="menu-item"><a href="<?= site_url('about') ?>">About</a></li>
                 <li class="menu-item"><a href="<?= site_url('profile') ?>">Profile</a></li>
                 <li class="menu-item"><a href="<?= site_url('tasks') ?>">Tasks</a></li>
-                <li class="menu-item"><a href="<?= site_url('login') ?>">Login</a></li>
+                <li class="menu-item"><a href="<?= site_url('login') ?>" class="active">Login</a></li>
             </ul>
         </div>
 
@@ -29,29 +29,29 @@
     </header>
 
     <section>
-        <?php if (session()->getFlashdata('message')): ?>
-            <div class="alert alert-success">
-                <?= esc(session()->getFlashdata('message')) ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (session()->getFlashdata('error')): ?>
-            <div class="alert alert-danger">
-                <?= esc(session()->getFlashdata('error')) ?>
-            </div>
-        <?php endif; ?>
-
-        <?php if (! empty($errors)): ?>
-            <div class="alert alert-danger">
-                <ul>
-                    <?php foreach ($errors as $error): ?>
-                        <li><?= esc($error) ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-
         <div class="form-container">
+            <?php if (session()->getFlashdata('message')): ?>
+                <div class="alert alert-success">
+                    <?= esc(session()->getFlashdata('message')) ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="alert alert-danger">
+                    <?= esc(session()->getFlashdata('error')) ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (! empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= esc($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <form action="<?= site_url('login') ?>" method="post">
                 <?= csrf_field() ?>
 
@@ -74,7 +74,7 @@
 
             <div class="demo-box">
                 <p><strong>Demo Credentials:</strong></p>
-                <p>Username: <code>charles</code> | Password: <code>TaskerDemo!2026</code></p>
+                <p>Username: <code>charles</code> &bull; Password: <code>TaskerDemo!2026</code></p>
             </div>
         </div>
     </section>

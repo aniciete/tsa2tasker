@@ -17,7 +17,7 @@
                 <li class="menu-item"><a href="<?= site_url('/') ?>">Welcome</a></li>
                 <li class="menu-item"><a href="<?= site_url('about') ?>">About</a></li>
                 <li class="menu-item"><a href="<?= site_url('profile') ?>">Profile</a></li>
-                <li class="menu-item"><a href="<?= site_url('tasks') ?>">Tasks</a></li>
+                <li class="menu-item"><a href="<?= site_url('tasks') ?>" class="active">Tasks</a></li>
                 <?php if ($isLoggedIn): ?>
                     <li class="menu-item"><a href="<?= site_url('tasks/new') ?>">+ New Task</a></li>
                     <li class="menu-item">

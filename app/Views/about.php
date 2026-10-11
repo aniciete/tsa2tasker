@@ -16,7 +16,7 @@
         <div class="menu">
             <ul>
                 <li class="menu-item"><a href="<?= site_url('/') ?>">Welcome</a></li>
-                <li class="menu-item"><a href="<?= site_url('about') ?>">About</a></li>
+                <li class="menu-item"><a href="<?= site_url('about') ?>" class="active">About</a></li>
                 <li class="menu-item"><a href="<?= site_url('profile') ?>">Profile</a></li>
                 <li class="menu-item"><a href="<?= site_url('tasks') ?>">Tasks</a></li>
                 <?php if (session()->get('user_id') !== null): ?>
