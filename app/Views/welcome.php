@@ -57,7 +57,7 @@
                 <?php if ($isLoggedIn): ?>
                     <a href="<?= site_url('tasks/new') ?>" class="btn btn-primary">+ Create New Task</a>
                 <?php endif; ?>
-                <a href="<?= site_url('tasks') ?>" class="btn btn-secondary">View All Tasks &rarr;</a>
+                <a href="<?= site_url('tasks') ?>" class="btn btn-secondary">View All Tasks</a>
             </div>
         </div>
 
